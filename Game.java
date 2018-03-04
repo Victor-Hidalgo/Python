@@ -25,7 +25,6 @@ public class Game {
                 int s2 = rand.nextInt(6) + 1;
                 int s3 = rand.nextInt(6) + 1;
         
-                ThreeDice lethal = new ThreeDice(s1, s2, s3);
                 ThreeDiceScorer rekt = new ThreeDiceScorer(s1, s2, s3);
                 
                 first[0] = s1;
@@ -36,38 +35,17 @@ public class Game {
                 int f2 = rand.nextInt(6) + 1;
                 int f3 = rand.nextInt(6) + 1;
         
-                ThreeDice curry = new ThreeDice(f1, f2, f3);
                 ThreeDiceScorer lebron = new ThreeDiceScorer(f1, f2, f3);
-                
-                first[0] = s1;
-                first[1] = s2;
-                first[2] = s3;
                 
                 second[0] = f1;
                 second[1] = f2;
                 second[2] = f3;
                 
-                if (lethal.threeSame()) {
-                    currentscore1 = lethal.getDie1() + lethal.getDie2() + lethal.getDie3() + 60;} 
-                else if (lethal.runOfThree()) {
-                    currentscore1 = lethal.getDie1() + lethal.getDie2() + lethal.getDie3() + 40;}
-                else if (lethal.pair()) {
-                    currentscore1 = lethal.getDie1() + lethal.getDie2() + lethal.getDie3() + 20;}
-                else if (lethal.allDifferent()) {
-                    currentscore1 = lethal.getDie1() + lethal.getDie2() + lethal.getDie3();}
-                
-                
-                if (curry.threeSame()) {
-                    currentscore2 = curry.getDie1() + curry.getDie2() + curry.getDie3() + 60;} 
-                else if (curry.runOfThree()) {
-                    currentscore2 = curry.getDie1() + curry.getDie2() + curry.getDie3() + 40;}
-                else if (curry.pair()) {
-                    currentscore2 = curry.getDie1() + curry.getDie2() + curry.getDie3() + 20;}
-                else if (curry.allDifferent()) {
-                    currentscore2 = curry.getDie1() + curry.getDie2() + curry.getDie3();}
+                currentscore1 = rekt.Calculus();
+                currentscore2 = lebron.Calculus();
                     
-                System.out.println("Round " + i + " \nPlayer 1: "); rekt.Calculus();
-                System.out.println("Player 2: "); lebron.Calculus();
+                System.out.println("Round " + i + " Player 1: " + first[0] + " " + first[1] + " " + first[2] + " Points: " +  currentscore1);
+                System.out.println("Player 2: " + second[0] + " " + second[1] + " " + second[2] + " Points: " +  currentscore2);
                 
                 if (currentscore1 > currentscore2) {
                     System.out.println("Round winner is player 1");
@@ -97,11 +75,13 @@ public class Game {
             if (totalscore1 > totalscore2) {
                 System.out.println("Overall points winner is player 1");}
                 
-            else {System.out.println("Overall points winner is player 2");}
-            
-            System.out.println("Tom Brady is the GOAT");}
+            else if (totalscore1 < totalscore2) {
+                System.out.println("Overall points winner is player 2");}
+                
+            else if (totalscore1 == totalscore2) {
+                System.out.println("Overall points are equal, nobody wins");}
         
-        else {System.out.println("Who is the GOAT?");}
+        else {System.out.println("Negative values are not allowed, please try again");}
         
         
     }
