@@ -1,18 +1,43 @@
 import java.util.*;
 
-public class GoldAccount extends StandardAccount { 
-	
-    public GoldAccount(int DaytimeMins, int WeekendMins, int MegabytesUsed, double DaytimeCost, double WeekendCost, double PackageCost, int Channels, int Broadband, double BroadbandCost){
-        super(DaytimeMins, WeekendMins, MegabytesUsed, DaytimeCost, WeekendCost, PackageCost, Channels,Broadband,BroadbandCost);
+public class GoldAccount extends StandardAccount {
+    
+    public GoldAccount(int DaytimeMins, int WeekendMins, int MegabytesUsed){
+        super(DaytimeMins, WeekendMins, MegabytesUsed);
     }
     
-    public void getAccount() {
-    
-	 System.out.println("Account Summary for Gold Account \n Package Cost: " + getPackageCost() + "\n Cost of daytime calls: " + getDaytimeCost()
-        + "/min \n Cost of evening and weekend calls: " + getWeekendCost() + "/min \n Number of Channels: " + getChannels()
-        + "\n Broadband Included: " + getBroadband() + "Mb \n Broadband Cost (above included limit): " + getBroadbandCost()
-        + "/Mb \n Total daytime calls cost: " + TotalDaytime() + "\n Total evening calls: " + TotalWeekend() + "\n Total (extra) broadband cost: "
-        + TotalBroadband() + "\n Total cost: " + TotalCost() + "\n Spotify Account provided \n Music on Demand provided");
+    public String getName(){
         
+        return "Account Summary for Silver Account";
+    }
+    
+    public double DaytimeCost(){
+        
+        return 0.00;
+    }
+    
+    public double WeekendCost(){
+        
+        return 0.00;
+    }
+    
+    public double PackageCost(){
+        
+        return 61.00;
+    }
+    
+    public int Channels(){
+        
+        return 230;
+    }
+    
+    public int Broadband(){
+        
+        return 1520;
+    }
+    
+    public double BroadbandCost(){
+        
+        return 0.01;
     }
 }
