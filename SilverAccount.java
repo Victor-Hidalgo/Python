@@ -1,25 +1,18 @@
 import java.util.*;
 
-public class SilverAccount extends StandardAccount {
-    
-    protected int DaytimeMins;
-    protected int WeekendMins;
-    protected int MegabytesUsed;
-    protected double DaytimeCost = 0.12;
-    protected double WeekendCost = 0.00;
-    protected double PackageCost = 46.00;
-    protected int Channels = 130;
-    protected int Broadband = 1000;
-    protected double BroadbandCost = 0.01;
-    protected String Name = "Account Summary for Silver Account";
-    
-    public SilverAccount(DaytimeMins, WeekendMins, MegabytesUsed){
-        super(DaytimeMins, WeekendMins, MegabytesUsed);
+public class SilverAccount extends StandardAccount { 
+	
+    public SilverAccount(int DaytimeMins, int WeekendMins, int MegabytesUsed, double DaytimeCost, double WeekendCost, double PackageCost, int Channels, int Broadband, double BroadbandCost){
+        super(DaytimeMins, WeekendMins, MegabytesUsed, DaytimeCost, WeekendCost, PackageCost, Channels,Broadband,BroadbandCost);
     }
     
-    public String getName() {
-        
-        return Name;
+    public void getAccount() {
+    
+	 System.out.println("Account Summary for Silver Account \n Package Cost: " + getPackageCost() + "\n Cost of daytime calls: " + getDaytimeCost()
+        + "/min \n Cost of evening and weekend calls: " + getWeekendCost() + "/min \n Number of Channels: " + getChannels()
+        + "\n Broadband Included: " + getBroadband() + "Mb \n Broadband Cost (above included limit): " + getBroadbandCost()
+        + "/Mb \n Total daytime calls cost: " + TotalDaytime() + "\n Total evening calls: " + TotalWeekend() + "\n Total (extra) broadband cost: "
+        + TotalBroadband() + "\n Total cost: " + TotalCost() + "\n Spotify Account provided");
         
     }
 }
