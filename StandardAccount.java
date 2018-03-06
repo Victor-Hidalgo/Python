@@ -11,11 +11,19 @@ public class StandardAccount {
     protected int Channels;
     protected int Broadband;
     protected double BroadbandCost;
-    protected String Name;
     
-    public StandardAccount(int s1, int s2, int s3, double s4, double s5, double s6, int s7, int s8, double s9, String s10) {
+    public StandardAccount(int s1, int s2, int s3, double s4, double s5, double s6, int s7, int s8, double s9) {
     
-    
+    DaytimeMins = s1;
+	WeekendMins = s2;
+	MegabytesUsed = s3;
+	DaytimeCost = s4;
+	WeekendCost = s5;
+	PackageCost = s6;
+	Channels = s7;
+	Broadband = s8;
+	BroadbandCost = s9;
+	
     }
     
     public double getDaytimeCost(){
@@ -48,11 +56,6 @@ public class StandardAccount {
         return BroadbandCost;
     }
     
-    public String getName(){
-        
-        return Name;
-    }
-    
     public double TotalDaytime(){
         
         double DaytimeSum = DaytimeMins * DaytimeCost;
@@ -69,7 +72,11 @@ public class StandardAccount {
     
     public double TotalBroadband(){
         
-        double BroadbandSum = (MegabytesUsed - Broadband) * BroadbandCost;
+        double BroadbandSum; 
+		
+		if (MegabytesUsed > Broadband){BroadbandSum = (MegabytesUsed - Broadband) * BroadbandCost;}
+		
+		else BroadbandSum = 0.00;
         
         return BroadbandSum;
     }
