@@ -5,76 +5,68 @@ public class StandardAccount {
     protected int DaytimeMins;
     protected int WeekendMins;
     protected int MegabytesUsed;
-    protected double DaytimeCost;
-    protected double WeekendCost;
-    protected double PackageCost;
-    protected int Channels;
-    protected int Broadband;
-    protected double BroadbandCost;
     
-    public StandardAccount(int s1, int s2, int s3, double s4, double s5, double s6, int s7, int s8, double s9) {
+    public StandardAccount(int s1, int s2, int s3) {
     
-    DaytimeMins = s1;
-	WeekendMins = s2;
-	MegabytesUsed = s3;
-	DaytimeCost = s4;
-	WeekendCost = s5;
-	PackageCost = s6;
-	Channels = s7;
-	Broadband = s8;
-	BroadbandCost = s9;
-	
+    DaytimeMins=s1;
+    WeekendMins=s2;
+    MegabytesUsed=s3;
     }
     
-    public double getDaytimeCost(){
+    public double DaytimeCost(){
         
-        return DaytimeCost;
+        return 0.00;
     }
     
-    public double getWeekendCost(){
+    public double WeekendCost(){
         
-        return WeekendCost;
+        return 0.00;
     }
     
-    public double getPackageCost(){
+    public double PackageCost(){
         
-        return PackageCost;
+        return 0.00;
     }
     
-    public int getChannels(){
+    public int Channels(){
         
-        return Channels;
+        return 0;
     }
     
-    public int getBroadband(){
+    public int Broadband(){
         
-        return Broadband;
+        return 0;
     }
     
-    public double getBroadbandCost(){
+    public double BroadbandCost(){
         
-        return BroadbandCost;
+        return 0.00;
+    }
+    
+    public String getName(){
+        
+        return "null";
     }
     
     public double TotalDaytime(){
         
-        double DaytimeSum = DaytimeMins * DaytimeCost;
+        double DaytimeSum = DaytimeMins * DaytimeCost();
         
         return DaytimeSum;
     }
     
     public double TotalWeekend(){
         
-        double WeekendSum = WeekendMins * WeekendCost;
+        double WeekendSum = WeekendMins * WeekendCost();
         
         return WeekendSum;
     }
     
     public double TotalBroadband(){
         
-        double BroadbandSum; 
+         double BroadbandSum; 
 		
-		if (MegabytesUsed > Broadband){BroadbandSum = (MegabytesUsed - Broadband) * BroadbandCost;}
+		if (MegabytesUsed > Broadband()){BroadbandSum = (MegabytesUsed - Broadband()) * BroadbandCost();}
 		
 		else BroadbandSum = 0.00;
         
@@ -83,7 +75,7 @@ public class StandardAccount {
     
     public double TotalCost(){
         
-        double Total = PackageCost + TotalDaytime() + TotalWeekend() + TotalBroadband();
+        double Total = PackageCost() + TotalDaytime() + TotalWeekend() + TotalBroadband();
         
         return Total;
     }
