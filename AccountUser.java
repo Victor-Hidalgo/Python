@@ -6,14 +6,20 @@ public class AccountUser{
         
         Scanner input = new Scanner(System.in);
         
+        int DayTime = -1, NightTime = -1, MegabytesUsed = -1;
+        
+        while (DayTime < 0 || NightTime < 0 || MegabytesUsed < 0) {
+        
         System.out.println("Please enter the number of daytime minutes used per month:");
-        int DayTime = input.nextInt();
+        DayTime = input.nextInt();
         
         System.out.println("Please enter the number of nighttime minutes used per month:");
-        int NightTime = input.nextInt();
+        NightTime = input.nextInt();
         
         System.out.println("Please enter the number of Megabytes used per month:");
-        int MegabytesUsed = input.nextInt();
+        MegabytesUsed = input.nextInt();
+        
+        System.out.println("Negative numbers are not allowed;");}
         
         BronzeAccount bronze = new BronzeAccount (DayTime, NightTime, MegabytesUsed);
         SilverAccount silver = new SilverAccount (DayTime, NightTime, MegabytesUsed);
