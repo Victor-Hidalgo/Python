@@ -161,6 +161,51 @@ class A1Paging {
 	}
 	
 	static void evict_fifo(int[] cache, int c_size, int[] request, int r_size) {
+        
+    int i = 0;
+    int j = 0;
+    int hits = 0;
+    int misses = 0;
+    int head = 0;
+    int tail = c_size;
+    int x = 0;
+    boolean found = false;
+    String display = " ";
+    String hit1 = "h";
+    String miss1 = "m";
+    
+    while (j < r_size){
+        
+        while(i < c_size){
+        
+            if(cache[i] == request[j]){
+                
+            found = true; hits++; display = display + hit1;
+            }
+            i++;
+        }
+        
+        if(i == c_size && found == false){
+            
+            cache[tail] = request[j];
+            
+            if(head==tail){
+                
+                System.out.println("EMPTY");
+            }
+            
+            else{
+                x = cache[head];
+                head++;
+            }
+            
+            i=0; misses++; display = display + miss1;
+        }
+        else {found = false; i=0;}
+        
+    j++;
+    }
+    System.out.println(display + "\n" + hits + " h " + misses +" m");
 			
 	}
 
