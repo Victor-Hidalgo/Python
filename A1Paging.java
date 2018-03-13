@@ -207,6 +207,10 @@ class A1Paging {
 		
 	int i = 0;
     int j = 0;
+    int k = 0;
+    int x = 1;
+    int loc = 0;
+    int [] frequencies = new int [c_size];
     int hits = 0;
     int misses = 0;
     boolean found = false;
@@ -214,20 +218,37 @@ class A1Paging {
     String hit1 = "h";
     String miss1 = "m";
     
+    while(k < c_size){
+        
+        frequencies[k] = 1;
+        k++;
+    }
+    
     while (j < r_size){
         
         while(i < c_size){
         
             if(cache[i] == request[j]){
                 
-            found = true; hits++; display = display + hit1;
+            found = true; hits++; display = display + hit1; frequencies[i] = frequencies[i] + 1;
             }
             i++;
         }
         
         if(i == c_size && found == false){
             
-            i=0; misses++; display = display + miss1;
+            while(x < c_size) {
+                
+                if(frequencies[loc] > frequencies[x]) {loc = x;}
+                
+                else if(frequencies[loc] == frequencies[x]) {loc = loc;}
+                
+            x++;}
+            
+            cache[loc] = request[j];
+            frequencies[loc] = 1;
+            
+            i=0; misses++; display = display + miss1; x = 1; loc = 0;
         }
         else {found = false; i=0;}
         
