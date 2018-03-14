@@ -99,7 +99,7 @@ class A1Paging {
     
     while (counter2 < r_size){
         
-        while(i < c_size){
+        while(counter1 < c_size){
         
             if(cache[counter1] == request[counter2]){
                 
@@ -108,11 +108,11 @@ class A1Paging {
             counter1++;
         }
         
-        if(i == c_size && found == false){
+        if(counter1 == c_size && found == false){
             
             counter1=0; misses++; display = display + miss1;
         }
-        else {found = false; i=0;}
+        else {found = false; counter1=0;}
         
     counter2++;
     }
@@ -245,7 +245,7 @@ class A1Paging {
                 
             x++;}
             
-            cache[loc] = request[j];
+            cache[loc] = request[counter2];
             frequencies[loc] = 1;
             
             counter1=0; misses++; display = display + miss1; x = 1; loc = 0;
