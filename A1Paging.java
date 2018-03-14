@@ -88,8 +88,8 @@ class A1Paging {
 
 	static void no_evict(int[] cache, int c_size, int[] request, int r_size) {
 
-    int i = 0;
-    int j = 0;
+    int counter1 = 0;
+    int counter2 = 0;
     int hits = 0;
     int misses = 0;
     boolean found = false;
@@ -97,32 +97,32 @@ class A1Paging {
     String hit1 = "h";
     String miss1 = "m";
     
-    while (j < r_size){
+    while (counter2 < r_size){
         
         while(i < c_size){
         
-            if(cache[i] == request[j]){
+            if(cache[counter1] == request[counter2]){
                 
             found = true; hits++; display = display + hit1;
             }
-            i++;
+            counter1++;
         }
         
         if(i == c_size && found == false){
             
-            i=0; misses++; display = display + miss1;
+            counter1=0; misses++; display = display + miss1;
         }
         else {found = false; i=0;}
         
-    j++;
+    counter2++;
     }
     System.out.println(display + "\n" + hits + " h " + misses +" m");
 	}
 
 	static void evict_largest(int[] cache, int c_size, int[] request, int r_size) {
 	
-    int i = 0;
-    int j = 0;
+    int counter1 = 0;
+    int counter2 = 0;
     int k = 1;
     int loc = 0; 
     int hits = 0;
@@ -132,29 +132,29 @@ class A1Paging {
     String hit1 = "h";
     String miss1 = "m";
     
-     while (j < r_size){
+     while (counter2 < r_size){
         
-        while(i < c_size){
+        while(counter1 < c_size){
         
-            if(cache[i] == request[j]){
+            if(cache[counter1] == request[counter2]){
                 
             found = true; hits++; display = display + hit1;
             }
-            i++;
+            counter1++;
         }
         
-        if(i == c_size && found == false){
+        if(counter1 == c_size && found == false){
             
             while(k < c_size) {
                 
                 if(cache[loc] < cache[k]) {loc = k;}
             k++;}
             
-            i=0; cache[loc] = request[j]; misses++; display = display + miss1; k = 1; loc = 0;
+            counter1=0; cache[loc] = request[counter2]; misses++; display = display + miss1; k = 1; loc = 0;
         }
-        else {found = false; i=0;}
+        else {found = false; counter1=0;}
         
-    j++;
+    counter2++;
     }
     System.out.println(display + "\n" + hits + " h " + misses +" m");
     
@@ -162,8 +162,8 @@ class A1Paging {
 	
 	static void evict_fifo(int[] cache, int c_size, int[] request, int r_size) {
         
-    int i = 0;
-    int j = 0;
+    int counter1 = 0;
+    int counter2 = 0;
 	int k = 0;
     int hits = 0;
     int misses = 0;
@@ -173,31 +173,31 @@ class A1Paging {
     String hit1 = "h";
     String miss1 = "m";
     
-    while (j < r_size){
+    while (counter2 < r_size){
         
-        while(i < c_size){
+        while(counter1 < c_size){
         
-            if(cache[i] == request[j]){
+            if(cache[counter1] == request[counter2]){
                 
             found = true; hits++; display = display + hit1;
             }
-            i++;
+            counter1++;
         }
         
-        if(i == c_size && found == false){
+        if(counter1 == c_size && found == false){
 				
-			cache[head] = request[j];
+			cache[head] = request[counter2];
 			head++;
 				
 			if(head == c_size){
 				head = 0;}
             
-            i=0; misses++; display = display + miss1;
+            counter1=0; misses++; display = display + miss1;
 		}
         
-        else {found = false; i=0;}
+        else {found = false; counter1=0;}
         
-    j++;}
+    counter2++;}
     
     System.out.println(display + "\n" + hits + " h " + misses +" m");
 			
@@ -205,9 +205,9 @@ class A1Paging {
 
 	static void evict_lfu(int[] cache, int c_size, int[] request, int r_size) {
 		
-	int i = 0;
-    int j = 0;
-    int k = 0;
+	int counter1 = 0;
+    int counter2 = 0;
+    int counter3 = 0;
     int x = 1;
     int loc = 0;
     int [] frequencies = new int [c_size];
@@ -218,24 +218,24 @@ class A1Paging {
     String hit1 = "h";
     String miss1 = "m";
     
-    while(k < c_size){
+    while(counter3 < c_size){
         
-        frequencies[k] = 1;
-        k++;
+        frequencies[counter3] = 1;
+        counter3++;
     }
     
-    while (j < r_size){
+    while (counter2 < r_size){
         
-        while(i < c_size){
+        while(counter1 < c_size){
         
-            if(cache[i] == request[j]){
+            if(cache[counter1] == request[counter2]){
                 
-            found = true; hits++; display = display + hit1; frequencies[i] = frequencies[i] + 1;
+            found = true; hits++; display = display + hit1; frequencies[counter1] = frequencies[counter1] + 1;
             }
-            i++;
+            counter1++;
         }
         
-        if(i == c_size && found == false){
+        if(counter1 == c_size && found == false){
             
             while(x < c_size) {
                 
@@ -248,11 +248,11 @@ class A1Paging {
             cache[loc] = request[j];
             frequencies[loc] = 1;
             
-            i=0; misses++; display = display + miss1; x = 1; loc = 0;
+            counter1=0; misses++; display = display + miss1; x = 1; loc = 0;
         }
-        else {found = false; i=0;}
+        else {found = false; counter1=0;}
         
-    j++;
+    counter2++;
     }
     System.out.println(display + "\n" + hits + " h " + misses +" m");
 
