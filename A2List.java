@@ -166,7 +166,7 @@ class A2List {
 	static void moveToFront() {
         
         A2Node curr;
-        A2Node maria;
+        A2Node maria = head;
         int i = 0;
         int comparisons = 0;
         int hits = 0;
@@ -175,8 +175,6 @@ class A2List {
         curr = head;
         boolean found = false;
         String sequence = "";
-        String numbers = "";
-        maria = head;
         
         while(i<reqCount){
             
@@ -240,8 +238,10 @@ class A2List {
 	static void freqCount() {
         
         A2Node curr;
-        A2Node maria;
+        A2Node maria = head;
+        A2Node third = head;
         int i = 0;
+        int j = 0;
         int comparisons = 0;
         int hits = 0;
         int ana = 0;
@@ -249,8 +249,6 @@ class A2List {
         curr = head;
         boolean found = false;
         String sequence = "";
-        String numbers = "";
-        maria = head;
         
         while(i<reqCount){
             
@@ -258,7 +256,9 @@ class A2List {
                 
                 if(reqData[i] == curr.data){
                     
-                    found = true;
+                    found = true; comparisons++;
+                    
+                    curr.freq = curr.freq + 1;
                    
                     hits++;
                    
@@ -273,20 +273,41 @@ class A2List {
                         maria.data = curr.data;
                         maria = maria.next;
                    
-                       while(maria != curr.next){
+                        while(maria != curr.next){
                             
                             pedro = ana;
                             ana = maria.data;
                             maria.data = pedro;
                             maria = maria.next;
+                        }
+                   
+                        maria = head; ana = 0;
+                        third = maria.next;
+                       
+                        while (third != null){
                             
-                       }
+                            if(maria.freq>third.freq){
+                                
+                                maria = head;
+                                third = maria.next;
+                                break;
+                            }
+                            
+                            else{
+                                ana = third.data;
+                                third.data = maria.data;
+                                maria.data = ana;
+                            }
+                            
+                            maria = maria.next;
+                            third = third.next;
+                        }
+                        
+                        maria = head;
+                        third = maria.next;
                     }
                    
-                   maria = head; ana = 0;
-                   comparisons++;
-                   
-                   break;
+                    break;
                 }
                 
                 comparisons++;
@@ -296,6 +317,18 @@ class A2List {
             if(found == false){
                 
                 insertNodeHead(new A2Node(reqData[i]));
+                curr = head;
+                maria = curr.next;
+                
+                while(maria != null){
+                    
+                    j = maria.data;
+                    maria.data = curr.data;
+                    curr.data = j;
+                    
+                    maria = maria.next;
+                    curr = curr.next;
+                }
                 
             }
             
@@ -303,8 +336,18 @@ class A2List {
             
             maria = head; curr = head; comparisons = 0; found = false;
             
+            j = 0; third = head;
+            
             i++;
         }
+        
+        maria = head;
+        
+            while(maria != null){
+                System.out.println(maria.data + " " + maria.freq);
+                
+                maria = maria.next;
+            }
         
         System.out.println(sequence + "\n" + hits + " h");
         printList();
