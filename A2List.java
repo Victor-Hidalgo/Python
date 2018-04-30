@@ -107,6 +107,7 @@ class A2List {
         A2Node tercero;
         int i = 0;
         int comparisons = 0;
+        int j = 0;
         int hits = 0;
         curr = head;
         boolean found = false;
@@ -138,9 +139,9 @@ class A2List {
                 
                 while(tercero != null){
                     
-                    reqData[i] = tercero.data;
+                    j = tercero.data;
                     tercero.data = curr.data;
-                    curr.data = reqData[i];
+                    curr.data = j;
                     
                     tercero = tercero.next;
                     curr = curr.next;
@@ -150,7 +151,7 @@ class A2List {
             
             sequence = sequence + " " + comparisons;
             
-            curr = head; comparisons = 0; found = false;
+            curr = head; comparisons = 0; found = false; j = 0;
             
             i++;
         }
@@ -218,8 +219,6 @@ class A2List {
                 curr = curr.next;
             }
             
-            System.out.println(reqData[i] + " " + found);
-            
             if(found == false){
                 
                 insertNodeHead(new A2Node(reqData[i]));
@@ -236,14 +235,79 @@ class A2List {
         System.out.println(sequence + "\n" + hits + " h");
         printList();
 	}
-
-	
 	
 	// move the file requested so that order is by non-increasing frequency
 	static void freqCount() {
         
+        A2Node curr;
+        A2Node maria;
+        int i = 0;
+        int comparisons = 0;
+        int hits = 0;
+        int ana = 0;
+        int pedro = 0;
+        curr = head;
+        boolean found = false;
+        String sequence = "";
+        String numbers = "";
+        maria = head;
         
-		
+        while(i<reqCount){
+            
+            while(curr != null){
+                
+                if(reqData[i] == curr.data){
+                    
+                    found = true;
+                   
+                    hits++;
+                   
+                    if(reqData[i] == maria.data){
+                        
+                        curr = curr;
+                    }
+                    
+                    else{
+                        
+                        ana = maria.data;
+                        maria.data = curr.data;
+                        maria = maria.next;
+                   
+                       while(maria != curr.next){
+                            
+                            pedro = ana;
+                            ana = maria.data;
+                            maria.data = pedro;
+                            maria = maria.next;
+                            
+                       }
+                    }
+                   
+                   maria = head; ana = 0;
+                   comparisons++;
+                   
+                   break;
+                }
+                
+                comparisons++;
+                curr = curr.next;
+            }
+            
+            if(found == false){
+                
+                insertNodeHead(new A2Node(reqData[i]));
+                
+            }
+            
+            sequence = sequence + " " + comparisons;
+            
+            maria = head; curr = head; comparisons = 0; found = false;
+            
+            i++;
+        }
+        
+        System.out.println(sequence + "\n" + hits + " h");
+        printList();
 	}
 
 	static void insertNodeHead(A2Node newNode) {
