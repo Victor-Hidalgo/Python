@@ -104,13 +104,11 @@ class A2List {
 	static void appendIfMiss() {
         
         A2Node curr;
-        A2Node feel;
         A2Node tercero;
         int i = 0;
         int comparisons = 0;
         int hits = 0;
         curr = head;
-        feel = head.next;
         boolean found = false;
         String sequence = "";
         String numbers = "";
@@ -159,22 +157,92 @@ class A2List {
         
         curr = head;
         
-        while(curr != null){
-            
-            numbers = numbers + " " + curr.data;
-            curr = curr.next;
-        }
-        
-        System.out.println(sequence + "\n" + hits + " h" + "\nList: " + numbers);
+        System.out.println(sequence + "\n" + hits + " h");
+        printList();
 	}
 
 	// move the file requested to the beginning of the list
 	static void moveToFront() {
-	
+        
+        A2Node curr;
+        A2Node maria;
+        int i = 0;
+        int comparisons = 0;
+        int hits = 0;
+        int ana = 0;
+        int pedro = 0;
+        curr = head;
+        boolean found = false;
+        String sequence = "";
+        String numbers = "";
+        maria = head;
+        
+        while(i<reqCount){
+            
+            while(curr != null){
+                
+                if(reqData[i] == curr.data){
+                    
+                    found = true;
+                   
+                    hits++;
+                   
+                    if(reqData[i] == maria.data){
+                        
+                        curr = curr;
+                    }
+                    
+                    else{
+                        
+                        ana = maria.data;
+                        maria.data = curr.data;
+                        maria = maria.next;
+                   
+                       while(maria != curr.next){
+                            
+                            pedro = ana;
+                            ana = maria.data;
+                            maria.data = pedro;
+                            maria = maria.next;
+                            
+                       }
+                    }
+                   
+                   maria = head; ana = 0;
+                   comparisons++;
+                   
+                   break;
+                }
+                
+                comparisons++;
+                curr = curr.next;
+            }
+            
+            System.out.println(reqData[i] + " " + found);
+            
+            if(found == false){
+                
+                insertNodeHead(new A2Node(reqData[i]));
+                
+            }
+            
+            sequence = sequence + " " + comparisons;
+            
+            maria = head; curr = head; comparisons = 0; found = false;
+            
+            i++;
+        }
+        
+        System.out.println(sequence + "\n" + hits + " h");
+        printList();
 	}
+
+	
 	
 	// move the file requested so that order is by non-increasing frequency
 	static void freqCount() {
+        
+        
 		
 	}
 
@@ -222,5 +290,4 @@ class A2List {
 		while (head != null)
 			deleteHead();
 	}
-
 }
