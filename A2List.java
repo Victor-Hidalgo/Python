@@ -242,6 +242,8 @@ class A2List {
         A2Node third = head;
         int i = 0;
         int j = 0;
+		int k = 0;
+		int save = 0;
         int comparisons = 0;
         int hits = 0;
         int counter1 = 0;
@@ -270,18 +272,23 @@ class A2List {
                     else{
                         
                         counter1 = sec.data;
+						save = sec.freq;
                         sec.data = curr.data;
+						sec.freq = curr.freq;
                         sec = sec.next;
                    
                         while(sec != curr.next){
                             
                             counter2 = counter1;
+							k = save;
                             counter1 = sec.data;
+							save = sec.freq;
                             sec.data = counter2;
+							sec.freq = k;
                             sec = sec.next;
                         }
                    
-                        sec = head; counter1 = 0;
+                        sec = head; counter1 = 0; save = 0; k = 0;
                         third = sec.next;
                        
                         while (third != null){
@@ -295,8 +302,11 @@ class A2List {
                             
                             else{
                                 counter1 = third.data;
+								save = third.freq;
                                 third.data = sec.data;
+								third.freq = sec.freq;
                                 sec.data = counter1;
+								sec.freq = save;
                             }
                             
                             sec = sec.next;
@@ -305,6 +315,8 @@ class A2List {
                         
                         sec = head;
                         third = sec.next;
+						counter1 = 0;
+						save = 0;
                     }
                    
                     break;
