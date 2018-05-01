@@ -26,7 +26,7 @@ class A2Graph {
 		input();
 
 		try {
-			System.out.print("Enter a distance (" + MinVertex + "--" + numVertex + ", -1 to exit): ");
+//			System.out.print("Enter a distance (" + MinVertex + "--" + numVertex + ", -1 to exit): ");
 			distance = keyboardInput.nextInt();
 		}
 		catch (Exception e) {
@@ -50,14 +50,70 @@ class A2Graph {
 	// input parameter: an integer distance
 	// output: compute neighbourhood matrix for distance 
 	static void neighbourhood(int distance, int result[][], int size) {
-		
-		result = new int [size][size];
-		int i = 1;
-		
-		while(i <= distance){
-			
-			
-		}
+        
+        result = new int [size][size];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        
+        while(i<size){
+            
+            while(j<size){
+                
+                if(i == j){
+                    
+                    result[i][j] = 0;
+                }
+                
+                else if(result[i][j] == 1){
+                    
+                    result[i][j] = 1;
+                }
+                
+                else if(result[j][i] > 0){
+                    
+                    result[i][j] = result[j][i];
+                }
+                
+                else{
+                    
+                    k = 0;
+                    
+                    while(k<size){
+                        
+                        if(result[k][i] > 0 && result[j][k] > 0){
+                            
+                            result[i][j] = result[k][i] + result[j][k];
+                            break;
+                        }
+                        
+                        else{
+                            
+                            result[i][j] = 0;
+                        }
+                        
+                        k++;
+                    }
+                    
+                    if(result[i][j] <= distance){
+                        
+                        result[i][j] = result[i][j];
+                    }
+                    
+                    else{
+                        
+                        result[i][j] = 0;
+                    }
+                }
+                
+                j++;
+            }
+            
+            j = 0;
+            
+            i++;
+        }
+
 	}
 
 	// DO NOT change this method
@@ -78,13 +134,13 @@ class A2Graph {
 
 		try {
 			success = true;
-			System.out.print("How many vertices (" + MinVertex + "--" + MaxVertex + ")? ");
+//			System.out.print("How many vertices (" + MinVertex + "--" + MaxVertex + ")? ");
 			numVertex = keyboardInput.nextInt();
 			if (numVertex > MaxVertex || numVertex < MinVertex) {
 				success = false;
 			}
 			if (success) {
-				System.out.println("Enter adjacency matrix: ");
+//				System.out.println("Enter adjacency matrix: ");
 				for (i=0; i<numVertex; i++)
 					for (j=0; j<numVertex; j++)
 						adjMatrix[i][j] = keyboardInput.nextInt();
@@ -110,4 +166,3 @@ class A2Graph {
 	}
 
 }
-
