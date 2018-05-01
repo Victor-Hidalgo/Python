@@ -238,14 +238,14 @@ class A2List {
 	static void freqCount() {
         
         A2Node curr;
-        A2Node maria = head;
+        A2Node sec = head;
         A2Node third = head;
         int i = 0;
         int j = 0;
         int comparisons = 0;
         int hits = 0;
-        int ana = 0;
-        int pedro = 0;
+        int counter1 = 0;
+        int counter2 = 0;
         curr = head;
         boolean found = false;
         String sequence = "";
@@ -262,49 +262,49 @@ class A2List {
                    
                     hits++;
                    
-                    if(reqData[i] == maria.data){
+                    if(reqData[i] == head.data){
                         
                         curr = curr;
                     }
                     
                     else{
                         
-                        ana = maria.data;
-                        maria.data = curr.data;
-                        maria = maria.next;
+                        counter1 = sec.data;
+                        sec.data = curr.data;
+                        sec = sec.next;
                    
-                        while(maria != curr.next){
+                        while(sec != curr.next){
                             
-                            pedro = ana;
-                            ana = maria.data;
-                            maria.data = pedro;
-                            maria = maria.next;
+                            counter2 = counter1;
+                            counter1 = sec.data;
+                            sec.data = counter2;
+                            sec = sec.next;
                         }
                    
-                        maria = head; ana = 0;
-                        third = maria.next;
+                        sec = head; counter1 = 0;
+                        third = sec.next;
                        
                         while (third != null){
                             
-                            if(maria.freq>third.freq){
+                            if(sec.freq>third.freq){
                                 
-                                maria = head;
-                                third = maria.next;
+                                sec = head;
+                                third = sec.next;
                                 break;
                             }
                             
                             else{
-                                ana = third.data;
-                                third.data = maria.data;
-                                maria.data = ana;
+                                counter1 = third.data;
+                                third.data = sec.data;
+                                sec.data = counter1;
                             }
                             
-                            maria = maria.next;
+                            sec = sec.next;
                             third = third.next;
                         }
                         
-                        maria = head;
-                        third = maria.next;
+                        sec = head;
+                        third = sec.next;
                     }
                    
                     break;
@@ -318,35 +318,34 @@ class A2List {
                 
                 insertNodeHead(new A2Node(reqData[i]));
                 curr = head;
-                maria = curr.next;
+                sec = curr.next;
                 
-                while(maria != null){
+                while(sec != null){
                     
-                    j = maria.data;
-                    maria.data = curr.data;
+                    j = sec.data;
+                    sec.data = curr.data;
                     curr.data = j;
                     
-                    maria = maria.next;
+                    sec = sec.next;
                     curr = curr.next;
                 }
-                
             }
             
             sequence = sequence + " " + comparisons;
             
-            maria = head; curr = head; comparisons = 0; found = false;
+            sec = head; curr = head; comparisons = 0; found = false;
             
             j = 0; third = head;
             
             i++;
         }
         
-        maria = head;
+        sec = head;
         
-            while(maria != null){
-                System.out.println(maria.data + " " + maria.freq);
+            while(sec != null){
+                System.out.println(sec.data + " " + sec.freq);
                 
-                maria = maria.next;
+                sec = sec.next;
             }
         
         System.out.println(sequence + "\n" + hits + " h");
