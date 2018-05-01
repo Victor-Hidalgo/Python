@@ -330,13 +330,19 @@ class A2List {
                 
                 insertNodeHead(new A2Node(reqData[i]));
                 curr = head;
+                counter1 = curr.freq;
                 sec = curr.next;
+                counter2 = sec.freq;
                 
                 while(sec != null){
                     
                     j = sec.data;
+                    save = sec.freq;
+                    
                     sec.data = curr.data;
+                    sec.freq = curr.freq;
                     curr.data = j;
+                    curr.freq = save;
                     
                     sec = sec.next;
                     curr = curr.next;
@@ -351,14 +357,6 @@ class A2List {
             
             i++;
         }
-        
-        sec = head;
-        
-            while(sec != null){
-                System.out.println(sec.data + " " + sec.freq);
-                
-                sec = sec.next;
-            }
         
         System.out.println(sequence + "\n" + hits + " h");
         printList();
