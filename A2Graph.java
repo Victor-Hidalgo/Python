@@ -55,9 +55,9 @@ class A2Graph {
         int i = 0;
         int j = 0;
         int k = 0;
-        int counter = 1;
-        
-        while(counter<distance){
+        int counter = 2;
+        System.out.println("My distance to calculate is " + distance);
+        while(counter<=distance){
             
             while(i<size){
                 
@@ -68,14 +68,9 @@ class A2Graph {
                         result[i][j] = 0;
                     }
                     
-                    else if(result[i][j] == 1){
+                    else if(adjMatrix[i][j] >= 1){
                         
-                        result[i][j] = 1;
-                    }
-                    
-                    else if(result[j][i] > 0){
-                        
-                        result[i][j] = result[j][i];
+                        result[i][j] = adjMatrix[i][j];
                     }
                     
                     else{
@@ -84,33 +79,35 @@ class A2Graph {
                         
                         while(k<size){
                             
-                            if(result[k][i] > 0 && result[j][k] > 0){
+							
+                            if(adjMatrix[k][i] > 0 && adjMatrix[j][k] > 0){
                                 
-                                result[i][j] = result[k][i] + result[j][k];
+                                result[i][j] = adjMatrix[k][i] + adjMatrix[j][k];
+								System.out.println("Distance found between " + i + "," + j + " = " + result[i][j]);
                                 break;
                             }
                             
                             else{
                                 
-                                result[i][j] = 0;
+                               // result[i][j] = 0;
                             }
                             
                             k++;
                         }
                         
-                        if(result[i][j] <= distance){
+                        if(adjMatrix[i][j] <= counter && adjMatrix[i][j]>1){
                             
-                            result[i][j] = result[i][j];
+                            //result[i][j] = adjMatrix[i][j];
                         }
                         
                         else{
                             
-                            result[i][j] = 0;
+                            //result[i][j] = 0;
                         }
                     }
-                    
+					
                     j++;
-                }
+                } 
                 
                 j = 0;
                 
@@ -120,6 +117,14 @@ class A2Graph {
             i = 0;
             counter++;
         }
+		
+		int l = 0;
+		
+		while(l<size){
+			
+			System.out.println(result[0][l]);
+			l++;
+		}
 
 	}
 
