@@ -44,6 +44,37 @@ class A2Graph {
 
 	// find the degree of separation of the graph using the method neightbourhood()
 	static void degreeSeparation() {
+        
+        int j = 0;
+        int i = 0;
+        int separation = 0;
+        
+        if(adjMatrix[i][numVertex-1]<0){
+            
+            System.out.println("Degree of separation is " + adjMatrix[i][numVertex-1]);
+        }
+        
+        else{
+            
+            while (j<numVertex){
+                
+                if(adjMatrix[j][i]>0 && adjMatrix[numVertex-1][j]>0){
+                    
+                    separation = adjMatrix[j][i] + adjMatrix[numVertex-1][j];
+                }
+                j++;
+            }
+            
+            if(separation>0){
+            
+            System.out.println("Degree of separation is " + separation);
+            }
+            
+            else{
+                
+                System.out.println("The graph is not connected");
+            }
+        }
 
 	}
 
