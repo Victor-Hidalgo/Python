@@ -35,19 +35,19 @@ class A2List {
 
 		try {
  			System.out.println();
-  			System.out.print("Enter the initial number of files in the cabinet (1-" + MaxInitCount + "): ");
+//  			System.out.print("Enter the initial number of files in the cabinet (1-" + MaxInitCount + "): ");
 			initCount = keyboardInput.nextInt();
 			if (initCount > MaxInitCount || initCount <= 0)
 				System.exit(0);
- 			System.out.print("Enter the initial file IDs in the cabinet (" + initCount + " different +ve integers): ");
+// 			System.out.print("Enter the initial file IDs in the cabinet (" + initCount + " different +ve integers): ");
 			for (int i=0; i<initCount; i++)
 				initData[i] = keyboardInput.nextInt();				
  			System.out.println();
-	 		System.out.print("Enter the number of file requests (1=" + MaxReqCount + "): ");
+//	 		System.out.print("Enter the number of file requests (1=" + MaxReqCount + "): ");
 			reqCount = keyboardInput.nextInt();
 			if (reqCount > MaxReqCount || reqCount <= 0)
 				System.exit(0);
- 			System.out.print("Enter the request file IDs (" + reqCount + " different +ve integers): ");
+// 			System.out.print("Enter the request file IDs (" + reqCount + " different +ve integers): ");
 			for (int i=0; i<reqCount; i++)
 				reqData[i] = keyboardInput.nextInt();				
 		}
@@ -104,7 +104,7 @@ class A2List {
 	static void appendIfMiss() {
         
         A2Node curr;
-        A2Node tercero;
+        A2Node sec;
         int i = 0;
         int comparisons = 0;
         int j = 0;
@@ -113,13 +113,13 @@ class A2List {
         boolean found = false;
         String sequence = "";
         String numbers = "";
-        tercero = head;
+        sec = head;
         
         while(i<reqCount){
             
             while(curr != null){
                 
-                if(curr.data == reqData[i]){
+                if(curr.data == reqData[i]){ //whenever there is a hit.
                     
                    found = true;
                    
@@ -132,24 +132,24 @@ class A2List {
             
             if(found == false){
                 
-                insertNodeHead(new A2Node(reqData[i]));
+                insertNodeHead(new A2Node(reqData[i])); // if it is not on the list, insert it at the head and then move it to the tail
                 
                 curr = head;
-                tercero = curr.next;
+                sec = curr.next;
                 
-                while(tercero != null){
+                while(sec != null){
                     
-                    j = tercero.data;
-                    tercero.data = curr.data;
+                    j = sec.data;
+                    sec.data = curr.data;
                     curr.data = j;
                     
-                    tercero = tercero.next;
+                    sec = sec.next;
                     curr = curr.next;
                 }
             
             }
             
-            sequence = sequence + " " + comparisons;
+            sequence = sequence + " " + comparisons; // record the number of comparisons.
             
             curr = head; comparisons = 0; found = false; j = 0;
             
@@ -166,12 +166,12 @@ class A2List {
 	static void moveToFront() {
         
         A2Node curr;
-        A2Node maria = head;
+        A2Node sec = head;
         int i = 0;
         int comparisons = 0;
         int hits = 0;
-        int ana = 0;
-        int pedro = 0;
+        int j = 0;
+        int k = 0;
         curr = head;
         boolean found = false;
         String sequence = "";
@@ -186,28 +186,29 @@ class A2List {
                    
                     hits++;
                    
-                    if(reqData[i] == maria.data){
+                    if(reqData[i] == sec.data){
                         
                         curr = curr;
                     }
                     
                     else{
                         
-                        ana = maria.data;
-                        maria.data = curr.data;
-                        maria = maria.next;
+                        j = sec.data; //change the head value and update the others untill it reaches the current node
+                        sec.data = curr.data;
+                        sec = sec.next;
                    
-                       while(maria != curr.next){
+                       while(sec != curr.next){
                             
-                            pedro = ana;
-                            ana = maria.data;
-                            maria.data = pedro;
-                            maria = maria.next;
+                            k = j;
+                            j = sec.data;
+                            sec.data = k;
+                            sec = sec.next;
                             
                        }
                     }
                    
-                   maria = head; ana = 0;
+                   sec = head; 
+                   j = 0;
                    comparisons++;
                    
                    break;
@@ -225,7 +226,10 @@ class A2List {
             
             sequence = sequence + " " + comparisons;
             
-            maria = head; curr = head; comparisons = 0; found = false;
+            sec = head;
+            curr = head; 
+            comparisons = 0; 
+            found = false;
             
             i++;
         }
@@ -271,13 +275,13 @@ class A2List {
                     
                     else{
                         
-                        counter1 = sec.data;
+                        counter1 = sec.data; //send the requested node to the front
 						save = sec.freq;
                         sec.data = curr.data;
 						sec.freq = curr.freq;
                         sec = sec.next;
                    
-                        while(sec != curr.next){
+                        while(sec != curr.next){ //update the nodes between the head and the current one.
                             
                             counter2 = counter1;
 							k = save;
@@ -291,7 +295,7 @@ class A2List {
                         sec = head; counter1 = 0; save = 0; k = 0;
                         third = sec.next;
                        
-                        while (third != null){
+                        while (third != null){ //swap data and distance untill the node reaches the correct position.
                             
                             if(sec.freq>third.freq){
                                 
@@ -351,9 +355,13 @@ class A2List {
             
             sequence = sequence + " " + comparisons;
             
-            sec = head; curr = head; comparisons = 0; found = false;
+            sec = head; 
+            curr = head; 
+            comparisons = 0; 
+            found = false;
             
-            j = 0; third = head;
+            j = 0; 
+            third = head;
             
             i++;
         }
