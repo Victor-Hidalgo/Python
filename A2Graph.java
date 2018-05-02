@@ -66,6 +66,11 @@ class A2Graph {
                         
                         adjMatrix[i][j] = 0;
                     }
+					
+					else if(adjMatrix[j][i]>0){
+						
+						adjMatrix[i][j] = adjMatrix[j][i];
+					}
                     
                     else if(adjMatrix[i][j] >= 1){
                         
@@ -102,7 +107,6 @@ class A2Graph {
  
 							adjMatrix[i][j] = 0;
 							}
-                        
                     }
 					
 					result[i][j] = adjMatrix[i][j];
@@ -136,7 +140,6 @@ class A2Graph {
 			rik = "";
 			i++;
 		}
-
 	}
 
 	// DO NOT change this method
@@ -187,5 +190,4 @@ class A2Graph {
 			keyboardInput.next();
 		}
 	}
-
 }
