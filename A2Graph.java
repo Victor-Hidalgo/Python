@@ -56,7 +56,6 @@ class A2Graph {
         int j = 0;
         int k = 0;
         int counter = 2;
-        System.out.println("My distance to calculate is " + distance);
         while(counter<=distance){
             
             while(i<size){
@@ -65,12 +64,12 @@ class A2Graph {
                     
                     if(i == j){
                         
-                        result[i][j] = 0;
+                        adjMatrix[i][j] = 0;
                     }
                     
                     else if(adjMatrix[i][j] >= 1){
                         
-                        result[i][j] = adjMatrix[i][j];
+						adjMatrix[i][j] = adjMatrix[i][j];
                     }
                     
                     else{
@@ -82,14 +81,13 @@ class A2Graph {
 							
                             if(adjMatrix[k][i] > 0 && adjMatrix[j][k] > 0){
                                 
-                                result[i][j] = adjMatrix[k][i] + adjMatrix[j][k];
-								System.out.println("Distance found between " + i + "," + j + " = " + result[i][j]);
+                                adjMatrix[i][j] = adjMatrix[k][i] + adjMatrix[j][k];
                                 break;
                             }
                             
                             else{
                                 
-                                result[i][j] = 0;
+                                adjMatrix[i][j] = 0;
                             }
                             
                             k++;
@@ -97,10 +95,17 @@ class A2Graph {
                         
                         if(adjMatrix[i][j] <= counter && adjMatrix[i][j]>1){
                             
-                            result[i][j] = adjMatrix[i][j];
+                            adjMatrix[i][j] = adjMatrix[i][j];
                         }
+						
+						else{
+ 
+							adjMatrix[i][j] = 0;
+							}
                         
                     }
+					
+					result[i][j] = adjMatrix[i][j];
 					
                     j++;
                 } 
