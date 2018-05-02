@@ -89,7 +89,7 @@ class A2Graph {
                             
                             else{
                                 
-                               // result[i][j] = 0;
+                                result[i][j] = 0;
                             }
                             
                             k++;
@@ -97,13 +97,9 @@ class A2Graph {
                         
                         if(adjMatrix[i][j] <= counter && adjMatrix[i][j]>1){
                             
-                            //result[i][j] = adjMatrix[i][j];
+                            result[i][j] = adjMatrix[i][j];
                         }
                         
-                        else{
-                            
-                            //result[i][j] = 0;
-                        }
                     }
 					
                     j++;
@@ -118,12 +114,22 @@ class A2Graph {
             counter++;
         }
 		
-		int l = 0;
+		i = 0;
+		j = 0;
+		String rik = "";
 		
-		while(l<size){
+		while(i<size){
 			
-			System.out.println(result[0][l]);
-			l++;
+			while(j<size){
+			
+				rik = rik + " " + result[i][j];
+				j++;
+			}
+			
+			System.out.println(rik);
+			j=0;
+			rik = "";
+			i++;
 		}
 
 	}
