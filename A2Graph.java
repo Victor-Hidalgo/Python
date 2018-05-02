@@ -55,63 +55,70 @@ class A2Graph {
         int i = 0;
         int j = 0;
         int k = 0;
+        int counter = 1;
         
-        while(i<size){
+        while(counter<distance){
             
-            while(j<size){
+            while(i<size){
                 
-                if(i == j){
+                while(j<size){
                     
-                    result[i][j] = 0;
-                }
-                
-                else if(result[i][j] == 1){
-                    
-                    result[i][j] = 1;
-                }
-                
-                else if(result[j][i] > 0){
-                    
-                    result[i][j] = result[j][i];
-                }
-                
-                else{
-                    
-                    k = 0;
-                    
-                    while(k<size){
+                    if(i == j){
                         
-                        if(result[k][i] > 0 && result[j][k] > 0){
+                        result[i][j] = 0;
+                    }
+                    
+                    else if(result[i][j] == 1){
+                        
+                        result[i][j] = 1;
+                    }
+                    
+                    else if(result[j][i] > 0){
+                        
+                        result[i][j] = result[j][i];
+                    }
+                    
+                    else{
+                        
+                        k = 0;
+                        
+                        while(k<size){
                             
-                            result[i][j] = result[k][i] + result[j][k];
-                            break;
+                            if(result[k][i] > 0 && result[j][k] > 0){
+                                
+                                result[i][j] = result[k][i] + result[j][k];
+                                break;
+                            }
+                            
+                            else{
+                                
+                                result[i][j] = 0;
+                            }
+                            
+                            k++;
+                        }
+                        
+                        if(result[i][j] <= distance){
+                            
+                            result[i][j] = result[i][j];
                         }
                         
                         else{
                             
                             result[i][j] = 0;
                         }
-                        
-                        k++;
                     }
                     
-                    if(result[i][j] <= distance){
-                        
-                        result[i][j] = result[i][j];
-                    }
-                    
-                    else{
-                        
-                        result[i][j] = 0;
-                    }
+                    j++;
                 }
                 
-                j++;
+                j = 0;
+                
+                i++;
             }
             
-            j = 0;
-            
-            i++;
+            i = 0;
+            counter++;
         }
 
 	}
