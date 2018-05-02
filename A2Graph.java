@@ -171,6 +171,18 @@ class A2Graph {
 			rik = "";
 			i++;
 		}
+        
+        /*while(i<size){
+			
+			while(j<size){
+			
+				result[i][j] = adjMatrix[i][j];
+				j++;
+			}
+            
+			j=0;
+			i++;
+		}*/
 	}
 
 	// DO NOT change this method
