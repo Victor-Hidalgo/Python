@@ -82,7 +82,6 @@ class A2Graph {
 	// output: compute neighbourhood matrix for distance 
 	static void neighbourhood(int distance, int result[][], int size) {
         
-        result = new int [size][size];
         int i = 0;
         int j = 0;
         int k = 0;
@@ -154,35 +153,6 @@ class A2Graph {
             counter++;
         }
 		
-		i = 0;
-		j = 0;
-		String rik = "";
-		
-		while(i<size){
-			
-			while(j<size){
-			
-				rik = rik + " " + result[i][j];
-				j++;
-			}
-			
-			System.out.println(rik);
-			j=0;
-			rik = "";
-			i++;
-		}
-        
-        /*while(i<size){
-			
-			while(j<size){
-			
-				result[i][j] = adjMatrix[i][j];
-				j++;
-			}
-            
-			j=0;
-			i++;
-		}*/
 	}
 
 	// DO NOT change this method
