@@ -5,3 +5,5 @@ print(color_list[0], color_list[3])
 s = int(input("Input an integer: "))
 i = int("%s" % s)
 mult = i * 2
+print(mult)
+#only use the plus sign to combine strings
