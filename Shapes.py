@@ -11,3 +11,18 @@ print(getLocation(1000))
 print(getLocation(900))
 print(getLocation(2200))
 print(getLocation(99))
+
+def getTripleSum(first, second, third):
+    if first == second and second == third:
+        sum = (first + second + third) * 3
+    
+    else:
+        sum = first + second + third
+    
+    return sum
+
+a = 2
+b = 4
+c = 3
+
+print("Sum:", getTripleSum(a, b, c))
