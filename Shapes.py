@@ -10,8 +10,8 @@ def getLocation(n):
     return ((abs(1000 - n) <= 100) or (abs(2000 - n) <= 100))
 
 print(getLocation(1000))
-print(getLocation(900))
-print(getLocation(2200))
+#print(getLocation(900))
+print(getLocation(2001))
 print(getLocation(99))
 
 a = 2
@@ -41,3 +41,17 @@ print("\n")
 print(isInString("Loop"))
 print(isInString("IsEmpty"))
 print(isInString("Not Empty"))
+
+def multiplicateString(str, n):
+
+    result = ""
+    i = 1
+
+    while i <= n:
+        
+        result = result + str
+        i = i + 1
+        
+    return result
+
+print(multiplicateString('abc', 3))
