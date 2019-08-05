@@ -6,3 +6,12 @@ if remainder > 0:
     
 else:
     print("This is an even number.")
+
+def isVowel(char):
+
+    vowels = 'aeiou'
+    return char in vowels
+
+test = input("Please enter a character: ")
+
+print(isVowel(test))
