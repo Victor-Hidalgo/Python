@@ -15,3 +15,20 @@ def isVowel(char):
 test = input("Please enter a character: ")
 
 print(isVowel(test))
+
+def gcd(a,b):
+
+    result = 1
+
+    if a % b == 0:
+        return b
+
+    for c in range(int(b/2), 0, -1):
+        if a % c == 0 and b % c == 0:
+            result = c
+            break
+    
+    return result
+
+print(gcd(12, 17))
+print(gcd(4, 6))
