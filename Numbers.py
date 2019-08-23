@@ -32,3 +32,22 @@ def gcd(a,b):
 
 print(gcd(12, 17))
 print(gcd(4, 6))
+
+def lcm(a, b):
+    
+    if a > b:
+        c = a
+
+    else:
+        c = b
+
+    while(True):
+        if((c % a == 0) and (c % b == 0)):
+            result = c
+            break
+        c += 1
+
+    return result
+
+print(lcm(4, 6))
+print(lcm(15, 17))
