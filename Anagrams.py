@@ -40,30 +40,51 @@ def makeAnagram(a, b):
         else:
             b_freq[i] = 1
     
-    print (a_freq)
-    print (b_freq)
-        
+    #print (a_freq)
+    #print (b_freq)
+    
+#remove characters that are only in a or in both a and b but with higher frequency in a
+    
     for j in a:
-        if j in b_freq:
+        if j in b:
             if a_freq[j] > b_freq[j]:
-                while a_freq[j] > b_freq[j]:
-                    a_freq[j] -= 1
-                    deletion += 1
-            
-            elif a_freq[j] < b_freq[j]:
-                while a_freq[j] < b_freq[j]:
-                    b_freq[j] -= 1
-                    deletion += 1
-                    
+                a_freq[j] -= 1
+                print('deleted', j)
+                a = a.replace(j, '', 1)
+                print(a)
+                deletion += 1
+                
         else:
-            a_freq.pop(j)
+            #print('deleted', j)
+            a = a.replace(j, '', 1)
+            #print(a)
             deletion += 1
             
+    #print('Second Loop')
+            
+#remove characters that are only in b or in both a and b but with higher frequency in b
+    
     for k in b:
-        if k not in a_freq:
-            b_freq.pop(k)
+        if k in a:
+            if a_freq[k] < b_freq[k]:
+                b_freq[k] -= 1
+                print('deleted', k)
+                b = b.replace(k, '', 1)
+                print(b)
+                deletion += 1
+                
+        else:
+            print('deleted', k)
+            b = b.replace(k, '', 1)
+            print(b)
             deletion += 1
             
+    #for key in a_freq:
+    #    print(key, '->', a_freq[key])
+    
+    #for key in b_freq:
+    #    print(key, '->', b_freq[key])
+    
     return deletion
 
 if __name__ == '__main__':
