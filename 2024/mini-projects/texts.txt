@@ -1,0 +1,5 @@
+Hello world my name is Victor and I am the best at writing code!
+This is another test block of text for this project!
+Do you feel optimistic about the future?
+Okay this is just another test to make sure the app is working fine!
+The quick brown fox jumped over the lazy dog.
