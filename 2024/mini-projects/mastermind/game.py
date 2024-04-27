@@ -9,7 +9,7 @@ def generate_code():
 
     for _ in range(CODE_LENGTH):
         color = random.choice(COLORS)
-        color.append(color)
+        code.append(color)
 
     return code
 
